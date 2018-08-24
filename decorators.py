@@ -1,5 +1,6 @@
 import functools
 import time
+import random
 
 
 def timer(func):
@@ -36,4 +37,11 @@ def slow_down(func):
         time.sleep(1)
         return func(*args, **kwargs)
     return wrapper_slow_down
+
+PLUGINS = dict()
+def register(func):
+    '''Register a function as a plug-in'''
+    PLUGINS[func.__name__] = func
+    return func
+
 
